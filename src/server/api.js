@@ -17,7 +17,30 @@ async function initializeStateFile() {
         await ensureDataDir();
         const exists = await fs.access(STORAGE_FILE).then(() => true).catch(() => false);
         if (!exists) {
-            await writeStateFile({});
+            const sampleData = {
+                participants: [
+                    { id: "1", name: "Player 1" },
+                    { id: "2", name: "Player 2" }
+                ],
+                challenges: [
+                    { id: "1", name: "Complete Tutorial" },
+                    { id: "2", name: "First Achievement" },
+                    { id: "3", name: "Win a Game" }
+                ],
+                completions: {
+                    "1": {
+                        "1": false,
+                        "2": false,
+                        "3": false
+                    },
+                    "2": {
+                        "1": false,
+                        "2": false,
+                        "3": false
+                    }
+                }
+            };
+            await writeStateFile(sampleData);
         }
     } catch (error) {
         console.error('Error initializing state file:', error);
