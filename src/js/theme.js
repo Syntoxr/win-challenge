@@ -4,10 +4,24 @@ const ThemeManager = {
         this.setTheme(savedTheme);
         
         const themeSwitch = document.getElementById('theme-switch');
+        const themeIcon = themeSwitch.querySelector('.theme-icon');
+        
+        // Set initial icon
+        themeIcon.textContent = savedTheme === 'light' ? '☀️' : '🌙';
+        
         themeSwitch.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            this.setTheme(newTheme);
+            
+            // Fade out
+            themeIcon.style.opacity = '0';
+            
+            // Change icon and fade in
+            setTimeout(() => {
+                themeIcon.textContent = newTheme === 'light' ? '☀️' : '🌙';
+                themeIcon.style.opacity = '1';
+                this.setTheme(newTheme);
+            }, 150);
         });
     },
 

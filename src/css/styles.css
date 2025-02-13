@@ -13,15 +13,16 @@
 }
 
 [data-theme="light"] {
-    --primary-color: #2196f3;
-    --secondary-color: #1976d2;
-    --background-color: #f0f2f5;
-    --surface-color: #ffffff;
-    --text-color: #333333;
-    --hover-color: #e3f2fd;
+    --primary-color: #00e5ff;
+    --secondary-color: #e100ff;
+    --background-color: #ffffff;
+    --surface-color: #f8f9fa;
+    --text-color: #1a1a2e;
+    --hover-color: rgba(0, 229, 255, 0.1);
     --grid-border: #e0e0e0;
-    --gradient-start: #2196f3;
-    --gradient-end: #1976d2;
+    --box-shadow: 0 8px 16px rgba(0, 229, 255, 0.1);
+    --gradient-start: #00e5ff;
+    --gradient-end: #e100ff;
 }
 
 /* Add this after your existing CSS variables */
@@ -229,28 +230,15 @@ input[type="checkbox"]:checked:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
-    background: var(--surface-color);
-    border: 2px solid;
-    border-image-slice: 1;
-    border-image-source: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
-    color: var(--text-color);
-}
-
-.theme-switch:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 15px var(--gradient-start);
-    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
-    color: var(--surface-color);
+    background: transparent;
+    border: none;
+    position: relative;
+    padding: 0;
 }
 
 .theme-icon {
-    font-size: 1.2rem;
-    transition: transform 0.3s ease;
-}
-
-.theme-switch:hover .theme-icon {
-    transform: rotate(180deg);
+    font-size: 1.5rem;
+    transition: opacity 0.3s ease;
 }
 
 /* Add this animation at the end of your CSS file */
