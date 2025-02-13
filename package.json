@@ -1,0 +1,19 @@
+{
+  "name": "win-challenge",
+  "version": "1.0.0",
+  "description": "A locally hosted website for the Win Challenge, allowing users to view and sync data among participants and challenges.",
+  "main": "src/server/server.js",
+  "scripts": {
+    "start": "node src/server/server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "keywords": []
+}

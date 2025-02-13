@@ -1,0 +1,269 @@
+:root {
+    /* Dark theme (default) */
+    --primary-color: #00e5ff;
+    --secondary-color: #e100ff;
+    --background-color: #1a1a2e;
+    --surface-color: #2a2a3e;
+    --text-color: #ffffff;
+    --hover-color: rgba(0, 229, 255, 0.1);
+    --grid-border: #4a4a5e;
+    --box-shadow: 0 8px 16px rgba(0, 229, 255, 0.1);
+    --gradient-start: #00e5ff;
+    --gradient-end: #e100ff;
+}
+
+[data-theme="light"] {
+    --primary-color: #2196f3;
+    --secondary-color: #1976d2;
+    --background-color: #f0f2f5;
+    --surface-color: #ffffff;
+    --text-color: #333333;
+    --hover-color: #e3f2fd;
+    --grid-border: #e0e0e0;
+    --gradient-start: #2196f3;
+    --gradient-end: #1976d2;
+}
+
+/* Add this after your existing CSS variables */
+*,
+*::before,
+*::after {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 20px;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--surface-color);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border: 1px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+}
+
+h1 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.challenge-grid {
+    width: 100%;
+    overflow-x: auto;
+    background: var(--surface-color);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+}
+
+.grid-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 3px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    position: sticky;
+    top: 0;
+    background: var(--surface-color);
+    z-index: 10;
+}
+
+.grid-cell {
+    min-width: 200px;
+    padding: 1rem;
+    font-weight: 600;
+}
+
+.participant-row {
+    display: flex;
+    flex-grow: 1;
+    gap: 1.5rem;
+}
+
+.participant-cell {
+    flex: 1;
+    text-align: center;
+    padding: 1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.challenge-row {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--grid-border);
+    transition: background-color 0.2s ease;
+}
+
+.challenge-row:hover {
+    background-color: var(--hover-color);
+}
+
+.checkbox-cell {
+    flex: 1;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--gradient-start);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    appearance: none;
+    -webkit-appearance: none;
+    background: var(--surface-color);
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    /* Add this to contain the gradient */
+}
+
+input[type="checkbox"]:checked {
+    border-color: var(--gradient-start);
+    /* Keep consistent border */
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--gradient-start);
+}
+
+input[type="checkbox"]:checked::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    /* Cover the border */
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+    background-size: 200% 200%;
+    animation: gradient 5s ease infinite;
+    z-index: 1;
+    /* Place behind the checkmark */
+}
+
+input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    color: var(--surface-color);
+    font-size: 16px;
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    /* Place above the gradient */
+}
+
+/* Update hover states to be more consistent */
+input[type="checkbox"]:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 8px var(--gradient-start);
+}
+
+input[type="checkbox"]:checked:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 20px var(--gradient-start);
+}
+
+.challenge-name {
+    min-width: 200px;
+    padding: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .challenge-name {
+        min-width: 150px;
+    }
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.theme-switch {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    background: var(--surface-color);
+    border: 2px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+    color: var(--text-color);
+}
+
+.theme-switch:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--gradient-start);
+    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+    color: var(--surface-color);
+}
+
+.theme-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.theme-switch:hover .theme-icon {
+    transform: rotate(180deg);
+}
+
+/* Add this animation at the end of your CSS file */
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
